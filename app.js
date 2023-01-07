@@ -1,17 +1,10 @@
-let numberOfSeasons = 6;
-let numberOfEpisodes = 12;
+// Create variables here
+// =========================================
+let episodeTitle = 'Le js pour les avatar';
+let episodeDuration = 15
+let hasBeenWatched = false
+// =========================================
 
-// Calculate totalShowTime here
-// =====================================
-
-let episodeTime = 45;
-let commercialTime = 5;
-
-let totalShowTime = (episodeTime + commercialTime) * numberOfSeasons * numberOfEpisodes;
-
-// =====================================
-
-let paragraph = document.querySelector('#info');
-paragraph.innerText = `${numberOfSeasons} seasons, ${numberOfEpisodes} episodes per season
-
-Total viewing time: ${totalShowTime} minutes`
+document.querySelector('#episode-info').innerText = `Episode: ${episodeTitle}
+Duration: ${episodeDuration} min
+${hasBeenWatched ? 'Already watched' : 'Not yet watched'}`
