@@ -1,10 +1,14 @@
-// Create variables here
+// Create Object here
 // =========================================
-let episodeTitle = 'Le js pour les avatar';
-let episodeDuration = 15
-let hasBeenWatched = false
+let episode = {
+    title: 'Le js pour les avatar',
+    duration: 15,
+    hasBeenWatched: false
+}
+
+
 // =========================================
 
-document.querySelector('#episode-info').innerText = `Episode: ${episodeTitle}
-Duration: ${episodeDuration} min
-${hasBeenWatched ? 'Already watched' : 'Not yet watched'}`
+document.querySelector('#episode-info').innerText = `Episode: ${episode.title}
+Duration: ${episode.duration} min
+${episode.hasBeenWatched ? 'Already watched' : 'Not yet watched'}`
