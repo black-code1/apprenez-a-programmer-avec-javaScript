@@ -1,39 +1,28 @@
-class Episode {
-    constructor(title, duration, hasBeenWatched) {
-        this.title = title;
-        this.duration = duration;
-        this.hasBeenWatched = hasBeenWatched;
+// Modify the code here
+// ======================
+
+const calculateAverageRating = (ratings) => {
+    if(ratings.length === 0) {
+        return 0;
     }
+    let sum = 0;
+    for (let rating of ratings) {
+        sum += rating;
+    }
+     return sum / ratings.length;
+
 }
-
-let episodes = [
-    new Episode('Dark Beginnings', 45, true),
-    new Episode('The Mystery Continues', 45, false),
-    new Episode('An Unexpected Climax', 60, false)
-];
-
-// Add logic here
-// ======================
-for (let episode of episodes){
-
-    episode.hasBeenWatched = false
-}
-
 
 // ======================
 
-const body = document.querySelector('body');
+const tauRatings = [5, 4, 5, 5, 1, 2];
+const colinRatings = [5, 5, 5, 4, 5];
 
-for(let episode of episodes) {
-    let newDiv = document.createElement('div');
-    newDiv.classList.add('series-frame');
-    let newTitle = document.createElement('h2');
-    newTitle.innerText = 'The Story of Tau';
-    let newParagraph = document.createElement('p');
-    newParagraph.innerText = `${episode.title}
-${episode.duration} minutes
-${episode.hasBeenWatched ? 'Already been watched' : 'Not yet watched'}`;
-    newDiv.append(newTitle);
-    newDiv.append(newParagraph);
-    body.append(newDiv);
+const tauAverage = calculateAverageRating(tauRatings);
+const colinAverage = calculateAverageRating(colinRatings);
+
+if (tauAverage && colinAverage) {
+    document.querySelector('#tau-score').innerText = tauAverage.toFixed(1) + ' stars';
+    document.querySelector('#colin-score').innerText = colinAverage.toFixed(1) + ' stars';
+    document.querySelector('#clara-score').innerText = `${calculateAverageRating([]) === 0 ? 'No ratings' : calculateAverageRating([]) + ' stars'}`
 }
