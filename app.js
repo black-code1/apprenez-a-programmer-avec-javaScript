@@ -1,54 +1,60 @@
-//-----CODE NON DRY------
-
-//variable de différentes personnes
-let personne1 = "Jean";
-let personne2 = "Paul";
-let personne3 = "Marcel";
-
-function saluer(prenom){
-    //On met la première lettre en majuscule, on salue la personne et on donne le nombre de lettre dans son prénom
-    const monPrenom = prenom[0].toUpperCase() + prenom.substr(1);
-    const longueurPrenom = monPrenom.length;
-    console.log(`Bonjour ${monPrenom}, ton prénom contient ${longueurPrenom} lettres`);
+class Show {
+    constructor(title, numberOfSeasons, episodesPerSeason) {
+        this.title = title;
+        this.numberOfSeasons = numberOfSeasons;
+        this.episodesPerSeason = episodesPerSeason;
+    }
 }
 
-//On salue les 3 personnes
-saluer(personne1);
-saluer(personne2);
-saluer(personne3);
+const tau = new Show('The Story of Tau', 5, 12);
+const meldrum = new Show('The Hero of Old Meldrum', 3, 6);
+const clara = new Show('The Bugs of Isla Clara', 6, 15);
 
+const shows = [tau, meldrum, clara];
 
-//-----CODE MAL NOMMÉ------
+// Modify the following code
+// ======================
 
-//tableau des ages des élèves dans la classe
-const agesElevesDeClasse = [14, 14, 15, 14, 16, 14, 14, 13];
-// Nombre d'élèves
-const nombreEleves = agesElevesDeClasse.length;
-// variable pour calculer la somme des ages
-let sommeAges = 0;
-for(let age of agesElevesDeClasse){
-    sommeAges += age;
+const generateComponent = (show) => {
+    const titleText = show.title;
+    const seasonsText = show.numberOfSeasons + ' Seasons';
+    const episodesText = show.episodesPerSeason + ' episodes per season'
+
+    return {
+        titleText,
+        seasonsText,
+        episodesText
+    }
 }
-//moyenne d'age dans la classe
-const moyenneAgesDeClasse = sommeAges / nombreEleves;
-console.log('Il y a ' + nombreEleves + " élèves dans la classe et la moyenne d'age est " + moyenneAgesDeClasse);
 
+const tauComponent = generateComponent(tau)
+const meldrumComponent = generateComponent(meldrum)
+const claraComponent = generateComponent(clara)
 
+const showComponents = [tauComponent, meldrumComponent, claraComponent];
 
-//-----CODE MAL MIS EN FORME------
+// ======================
+// Modify the code above
 
-const temperature = 25;
+const body = document.querySelector('body');
 
-if(temperature < 10){
-    console.log("Il fait très froid"); }
-else if(temperature < 0){
-    console.log("Il fait froid");
-}else if(temperature < 10){
-    console.log("Il fait frais");
-}else if(temperature < 20){
-    console.log("Il fait doux");
-}else if(temperature < 30){
-    console.log("Il fait bon");
-}else{
-    console.log("Il fait chaud");
-}
+const updateShows = () => {
+    for (let show of showComponents) {
+        const showPane = document.createElement('div');
+        showPane.classList.add('series-frame');
+        const showHeading = document.createElement('h2');
+        showHeading.innerText = show.titleText;
+        const showDetails = document.createElement('p');
+        const seasons = document.createElement('p');
+        seasons.innerText = show.seasonsText;
+        const episodes = document.createElement('p');
+        episodes.innerText = show.episodesText;
+        showDetails.append(seasons);
+        showDetails.append(episodes);
+        showPane.append(showHeading);
+        showPane.append(showDetails);
+        body.append(showPane);
+    }
+};
+
+updateShows();
