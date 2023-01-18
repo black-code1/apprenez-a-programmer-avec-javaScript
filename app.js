@@ -1,85 +1,54 @@
-// Modify the code here
-// ======================
+//-----CODE NON DRY------
 
-class Show {
-    constructor(title, numberOfSeasons) {
-        this.title = title;
-        this.numberOfSeasons = numberOfSeasons;
-        this.ratings = [];
-        this.averageRating = 0;
-    }
+//variable de différentes personnes
+let personne1 = "Jean";
+let personne2 = "Paul";
+let personne3 = "Marcel";
 
-    addRating(rating) {
-        this.ratings.push(rating)
-        let sum = 0;
-        for (let rating of this.ratings) {
-            sum += rating
-        }
-
-        this.averageRating = sum / this.ratings.length
-    }
-
-
+function saluer(prenom){
+    //On met la première lettre en majuscule, on salue la personne et on donne le nombre de lettre dans son prénom
+    const monPrenom = prenom[0].toUpperCase() + prenom.substr(1);
+    const longueurPrenom = monPrenom.length;
+    console.log(`Bonjour ${monPrenom}, ton prénom contient ${longueurPrenom} lettres`);
 }
 
-// ======================
+//On salue les 3 personnes
+saluer(personne1);
+saluer(personne2);
+saluer(personne3);
 
-const tau = new Show('The Story of Tau', 5);
-const colin = new Show('The Hero of Old Meldrum', 3);
-const clara = new Show('The Bugs of Isla Clara', 6);
 
-const shows = [tau, colin, clara];
+//-----CODE MAL NOMMÉ------
 
-const body = document.querySelector('body');
-const refresh = document.querySelector('#refresh');
-
-refresh.addEventListener('click', () => {
-    removeShows();
-    addRandomRatings();
-    updateShows();
-})
-
-const updateShows = () => {
-    for (let show of shows) {
-        const showPane = document.createElement('div');
-        showPane.classList.add('series-frame');
-        const showHeading = document.createElement('h2');
-        showHeading.innerText = show.title;
-        const showDetails = document.createElement('p');
-        const seasons = document.createElement('p');
-        seasons.innerText = show.numberOfSeasons + ' seasons';
-        const ratings = document.createElement('p');
-        ratings.innerText = show.averageRating > 0 ? show.ratings.length + ' ratings\n' + show.averageRating.toFixed(1) + ' stars' : 'No ratings yet';
-        showDetails.append(seasons);
-        showDetails.append(ratings);
-        showPane.append(showHeading);
-        showPane.append(showDetails);
-        body.append(showPane);
-    }
-};
-
-const removeShows = () => {
-    const children = [];
-    for (let childNode of body.childNodes) {
-        children.push(childNode);
-    }
-    for (let child of children) {
-        if (child.tagName == 'DIV') {
-            body.removeChild(child);
-        }
-    }
+//tableau des ages des élèves dans la classe
+const agesElevesDeClasse = [14, 14, 15, 14, 16, 14, 14, 13];
+// Nombre d'élèves
+const nombreEleves = agesElevesDeClasse.length;
+// variable pour calculer la somme des ages
+let sommeAges = 0;
+for(let age of agesElevesDeClasse){
+    sommeAges += age;
 }
+//moyenne d'age dans la classe
+const moyenneAgesDeClasse = sommeAges / nombreEleves;
+console.log('Il y a ' + nombreEleves + " élèves dans la classe et la moyenne d'age est " + moyenneAgesDeClasse);
 
-const addRandomRatings = () => {
-    for (let show of shows) {
-        if (Math.random() >= 0.2) {
-            const numberOfRatings = Math.floor(Math.random() * 4 + 1);
-            for (let i = 0; i < numberOfRatings; i++) {
-                const rating = Math.floor(Math.random() * 5 + 1);
-                show.addRating(rating);
-            }
-        }
-    }
+
+
+//-----CODE MAL MIS EN FORME------
+
+const temperature = 25;
+
+if(temperature < 10){
+    console.log("Il fait très froid"); }
+else if(temperature < 0){
+    console.log("Il fait froid");
+}else if(temperature < 10){
+    console.log("Il fait frais");
+}else if(temperature < 20){
+    console.log("Il fait doux");
+}else if(temperature < 30){
+    console.log("Il fait bon");
+}else{
+    console.log("Il fait chaud");
 }
-
-updateShows();
